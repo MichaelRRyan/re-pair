@@ -13,6 +13,7 @@ CameraController::CameraController(sf::RenderWindow & t_window) :
 ///////////////////////////////////////////////////////////////////////////////
 void CameraController::reset()
 {
+	m_view = m_windowRef.getView();
 	m_view.setCenter(m_view.getSize() / 2.0f);
 	m_windowRef.setView(m_view);
 }

@@ -4,11 +4,16 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
+	m_window{ sf::VideoMode::getDesktopMode(), "Basic Game", sf::Style::Fullscreen },
 	m_cameraController{ m_window },
 	m_exitGame{ false },
 	m_gamestate{ GameState::Gameplay }
 {
+	sf::View view = m_window.getDefaultView();
+	view.setSize(view.getSize() / 1.8f);
+	m_window.setView(view);
+	m_window.setVerticalSyncEnabled(true);
+
 	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
 	{
 		std::cout << "Error loading texture file" << std::endl;
@@ -62,13 +67,18 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
-
-		if (m_gamestate == GameState::End
-			&& sf::Event::KeyPressed == nextEvent.type)
+		if (sf::Event::KeyPressed == nextEvent.type)
 		{
-			if (sf::Keyboard::Space == nextEvent.key.code)
+			if (m_gamestate == GameState::End)
 			{
-				startRound();
+				if (sf::Keyboard::Space == nextEvent.key.code)
+				{
+					startRound();
+				}
+			}
+			if (sf::Keyboard::Escape == nextEvent.key.code)
+			{
+				m_window.close();
 			}
 		}
 	}
