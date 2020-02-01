@@ -1,5 +1,5 @@
-#ifndef NPC_H
-#define NPC_H
+#ifndef PERSON_H
+#define PERSON_H
 
 /// @Author Michael R Ryan
 /// @Date 01/02/2020
@@ -17,4 +17,4 @@ private:
 	sf::RectangleShape m_boundingBox;
 };
 
-#endif // !NPC_H
+#endif // !PERSON_H
