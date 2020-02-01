@@ -11,10 +11,11 @@ class Person : public sf::Drawable
 public:
 	Person();
 
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+protected:
 	void move(float t_x, float t_y);
 	void move(sf::Vector2f t_vector);
-
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
 	sf::RectangleShape m_boundingBox;
