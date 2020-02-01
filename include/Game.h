@@ -7,6 +7,7 @@
 #include <vector>
 #include "player.h"
 #include "NPC.h"
+#include "CameraController.h"
 
 class Game
 {
@@ -31,6 +32,8 @@ private:
 	Player m_player;
 
 	std::vector<NPC> m_npcs;
+
+	CameraController m_cameraController;
 };
 
 #endif // !GAME
