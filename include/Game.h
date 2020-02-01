@@ -49,6 +49,9 @@ private:
 	GameState m_gamestate;
 
 	sf::Clock m_gameTimer;
+
+	sf::Font m_font;
+	sf::Text m_text;
 };
 
 #endif // !GAME

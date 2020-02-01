@@ -17,6 +17,14 @@ Game::Game() :
 	m_backgroundSprite.setTexture(m_backgroundTexture);
 	m_backgroundSprite.setPosition(-150.0f, -150.0f);
 
+	if (!m_font.loadFromFile("Slabo.ttf"))
+	{
+		throw("Error loading font file");
+	}
+
+	m_text.setFont(m_font);
+	m_text.setFillColor(sf::Color::Black);
+
 	startRound();
 }
 
@@ -92,6 +100,17 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.update();
 
 		m_cameraController.moveWindow(m_player.getPosition());
+
+		float elapsedSeconds = m_gameTimer.getElapsedTime().asSeconds();
+
+		m_text.setString(std::to_string(20 - static_cast<int>(elapsedSeconds)));
+		m_text.setPosition(m_player.getPosition().x + m_player.getSize().x / 2.0f, m_player.getPosition().y + m_player.getSize().y);
+		m_text.setOrigin(m_text.getGlobalBounds().width / 2.0f, 0.0f);
+
+		if (elapsedSeconds >= 20.0f)
+		{
+			m_gamestate = GameState::End;
+		}
 	}
 }
 
@@ -110,6 +129,8 @@ void Game::render()
 		}
 
 		m_window.draw(m_player);
+
+		m_window.draw(m_text);
 	}
 	
 	m_window.display();
@@ -133,4 +154,6 @@ void Game::startRound()
 	m_npcs.at(index).setPerson(&m_player);
 
 	m_gamestate = GameState::Gameplay;
+
+	m_gameTimer.restart();
 }
