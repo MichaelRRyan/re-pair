@@ -77,7 +77,7 @@ void Game::update(sf::Time t_deltaTime)
 		//std::cout << "Down" << std::endl;
 	}
 
-	if (moveDirection.x != 0.0f && moveDirection.y != 0.0f)
+	if (moveDirection.x != 0.0f || moveDirection.y != 0.0f)
 	{
 		m_player.move();
 	}
