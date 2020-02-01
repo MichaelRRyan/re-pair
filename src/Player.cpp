@@ -5,9 +5,15 @@
 /// @Date 01/02/2020
 
 Player::Player() :
-	m_speed{ 3.0f },
+	m_speed{ 5.0f },
 	m_targetPtr{ nullptr }
 {
+}
+
+void Player::setup()
+{
+	setPosition((GAME_WIDTH / 2.0f) - (getSize().x / 2.0f), (GAME_HEIGHT / 2.0f) - (getSize().y / 2.0f));
+	setFillColor(sf::Color{ static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255) });
 }
 
 void Player::update()

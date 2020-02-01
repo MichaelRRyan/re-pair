@@ -32,7 +32,7 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 
-	void setupShapes();
+	void startRound();
 
 	sf::RenderWindow m_window;
 	bool m_exitGame;
@@ -47,6 +47,8 @@ private:
 	sf::Sprite m_backgroundSprite;
 
 	GameState m_gamestate;
+
+	sf::Clock m_gameTimer;
 };
 
 #endif // !GAME

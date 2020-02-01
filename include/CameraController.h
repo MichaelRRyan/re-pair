@@ -12,6 +12,8 @@ class CameraController
 public:
 	CameraController(sf::RenderWindow & t_window);
 
+	void reset();
+
 	void moveWindow(sf::Vector2f t_targetPos);
 
 	void setSmoothness(float t_snapSpeed);

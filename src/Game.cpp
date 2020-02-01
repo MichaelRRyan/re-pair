@@ -9,7 +9,15 @@ Game::Game() :
 	m_exitGame{ false },
 	m_gamestate{ GameState::Gameplay }
 {
-	setupShapes();
+	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
+	{
+		std::cout << "Error loading texture file" << std::endl;
+	}
+
+	m_backgroundSprite.setTexture(m_backgroundTexture);
+	m_backgroundSprite.setPosition(-150.0f, -150.0f);
+
+	startRound();
 }
 
 Game::~Game()
@@ -45,6 +53,15 @@ void Game::processEvents()
 		if (sf::Event::Closed == nextEvent.type) // check if the close window button is clicked on.
 		{
 			m_window.close();
+		}
+
+		if (m_gamestate == GameState::End
+			&& sf::Event::KeyPressed == nextEvent.type)
+		{
+			if (sf::Keyboard::Space == nextEvent.key.code)
+			{
+				startRound();
+			}
 		}
 	}
 }
@@ -98,8 +115,14 @@ void Game::render()
 	m_window.display();
 }
 
-void Game::setupShapes()
+void Game::startRound()
 {
+	m_cameraController.reset();
+
+	m_player.setup();
+
+	m_npcs.clear();
+
 	for (int i = 0; i < NPC_NUM; i++)
 	{
 		m_npcs.push_back(NPC());
@@ -109,11 +132,5 @@ void Game::setupShapes()
 	m_player.setTarget(&m_npcs.at(index));
 	m_npcs.at(index).setPerson(&m_player);
 
-	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
-	{
-		std::cout << "Error loading texture file" << std::endl;
-	}
-
-	m_backgroundSprite.setTexture(m_backgroundTexture);
-	m_backgroundSprite.setPosition(-150.0f, -150.0f);
+	m_gamestate = GameState::Gameplay;
 }

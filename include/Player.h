@@ -14,6 +14,8 @@ class Player : public Person
 public:
 	Player();
 
+	void setup();
+
 	void update();
 
 	bool winCheck();

@@ -11,6 +11,13 @@ CameraController::CameraController(sf::RenderWindow & t_window) :
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void CameraController::reset()
+{
+	m_view.setCenter(m_view.getSize() / 2.0f);
+	m_windowRef.setView(m_view);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void CameraController::moveWindow(sf::Vector2f t_targetPos)
 {
 	sf::Vector2f distanceVec = t_targetPos - m_view.getCenter();
@@ -41,7 +48,10 @@ void CameraController::moveWindow(sf::Vector2f t_targetPos)
 	m_windowRef.setView(m_view);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void CameraController::setSmoothness(float t_snapSpeed)
 {
 	m_smoothness = t_snapSpeed;
 }
+
+///////////////////////////////////////////////////////////////////////////////
