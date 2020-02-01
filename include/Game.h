@@ -4,6 +4,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include "player.h"
 
 
 class Game
@@ -27,7 +28,7 @@ private:
 	bool m_exitGame;
 
 	sf::CircleShape m_circle;
-
+	Player m_player;
 };
 
 #endif // !GAME

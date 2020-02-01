@@ -1,6 +1,7 @@
 /// @Author Michael Rainsford Ryan
 
 #include "../include/Game.h"
+#include <iostream>
 
 Game::Game() :
 	m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
@@ -52,12 +53,41 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	sf::Vector2f moveDirection = { 0.0f, 0.0f };
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		moveDirection.x--;
+		//std::cout << "left" << std::endl;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		moveDirection.x++;
+		//std::cout << "Right" << std::endl;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		moveDirection.y--;
+		//std::cout << "Up" << std::endl;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		moveDirection.y++;
+		//std::cout << "Down" << std::endl;
+	}
+
+	if (moveDirection.x != 0.0f && moveDirection.y != 0.0f)
+	{
+		m_player.move();
+	}
 }
 
 void Game::render()
 {
 	m_window.clear();
 
+	m_window.draw(m_player);
 	m_window.draw(m_circle);
 
 	m_window.display();

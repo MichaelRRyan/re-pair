@@ -6,8 +6,14 @@
 
 #include "Person.h"
 
-class Player
+class Player : public Person
 {
+	
+public:
+	void move();
+
+
+
 };
 
 #endif // !PLAYER_H
