@@ -5,7 +5,8 @@
 
 CameraController::CameraController(sf::RenderWindow & t_window) :
 	m_windowRef{ t_window },
-	m_view{ t_window.getDefaultView() }
+	m_view{ t_window.getDefaultView() },
+	m_smoothness{ 40.0f }
 {
 }
 
@@ -13,5 +14,11 @@ CameraController::CameraController(sf::RenderWindow & t_window) :
 void CameraController::moveWindow(sf::Vector2f t_targetPos)
 {
 	sf::Vector2f distanceVec = t_targetPos - m_view.getCenter();
-	m_view.setCenter(m_view.getCenter() + (distanceVec / 2.0f));
+	m_view.setCenter(m_view.getCenter() + (distanceVec / m_smoothness));
+	m_windowRef.setView(m_view);
+}
+
+void CameraController::setSmoothness(float t_snapSpeed)
+{
+	m_smoothness = t_snapSpeed;
 }

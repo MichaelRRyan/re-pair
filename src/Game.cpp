@@ -61,6 +61,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		npc.update();
 	}
+
+	m_cameraController.moveWindow(m_player.getPosition());
 }
 
 void Game::render()

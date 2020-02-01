@@ -13,9 +13,12 @@ public:
 
 	void moveWindow(sf::Vector2f t_targetPos);
 
+	void setSmoothness(float t_snapSpeed);
+
 private:
 	sf::RenderWindow & m_windowRef;
 	sf::View m_view;
+	float m_smoothness;
 };
 
 #endif // CAMERA_CONTROLLER_H

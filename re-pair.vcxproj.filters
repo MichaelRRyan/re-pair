@@ -33,7 +33,7 @@
     <ClCompile Include="src\Matrix3f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CameraController.cpp">
+    <ClCompile Include="src\CameraController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClInclude Include="include\Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CameraController.h">
+    <ClInclude Include="include\CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
