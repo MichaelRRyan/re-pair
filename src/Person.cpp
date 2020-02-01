@@ -4,7 +4,15 @@
 Person::Person()
 {
     m_boundingBox.setFillColor(sf::Color{ static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255) });
-    m_boundingBox.setPosition(400.0f, 200.0f);
+    m_boundingBox.setPosition((GAME_WIDTH / 2.0f) - (getSize().x / 2.0f), (GAME_HEIGHT / 2.0f) - (getSize().y / 2.0f));
+    m_boundingBox.setSize({ 30.0f, 60.0f });
+}
+
+///////////////////////////////////////////////////////////////////////////////
+Person::Person(float const t_x, float const t_y)
+{
+    m_boundingBox.setFillColor(sf::Color{ static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255) });
+    m_boundingBox.setPosition(t_x, t_y);
     m_boundingBox.setSize({ 30.0f, 60.0f });
 }
 

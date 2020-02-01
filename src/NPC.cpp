@@ -4,7 +4,9 @@
 /// @Date 01/02/2020
 
 NPC::NPC() :
-	m_velocity{ 1.0f, 0.0f }
+	m_velocity{ 1.0f, 0.0f },
+	Person(static_cast<float>(rand() % static_cast<int>(GAME_WIDTH - Person::getPosition().x)),
+		static_cast<float>(rand() % static_cast<int>(GAME_HEIGHT - Person::getSize().y)))
 {
 }
 
@@ -19,7 +21,7 @@ void NPC::update()
 
 	move(m_velocity);
 
-	if (Person::getPosition().x - Person::getSize().x > GAME_WIDTH)
+	if (Person::getPosition().x + Person::getSize().x > GAME_WIDTH)
 	{
 		m_velocity.x *= -1;
 	}
@@ -29,12 +31,12 @@ void NPC::update()
 		m_velocity.x *= -1;
 	}
 
-	if (Person::getPosition().y > GAME_HEIGHT)
+	if (Person::getPosition().y + Person::getSize().y > GAME_HEIGHT)
 	{
 		m_velocity.y *= -1;
 	}
 
-	if (Person::getPosition().y - Person::getSize().y < 0.0f)
+	if (Person::getPosition().y < 0.0f)
 	{
 		m_velocity.y *= -1;
 	}

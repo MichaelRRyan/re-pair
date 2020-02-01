@@ -16,7 +16,6 @@ public:
 	void update();
 
 private:
-	Person m_person;
 	sf::Vector2f m_velocity;
 };
 

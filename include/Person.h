@@ -5,11 +5,13 @@
 /// @Date 01/02/2020
 
 #include <SFML/Graphics.hpp>
+#include "Config.h"
 
 class Person : public sf::Drawable
 {
 public:
 	Person();
+	Person(float const t_x, float const t_y);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

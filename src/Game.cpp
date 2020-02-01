@@ -82,24 +82,30 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.move();
 	}
 
-	m_npc.update();
-
+	for (NPC& npc : m_npcs)
+	{
+		npc.update();
+	}
 }
 
 void Game::render()
 {
 	m_window.clear();
 
-	m_window.draw(m_player);
-	m_window.draw(m_circle);
-	m_window.draw(m_npc);
+	for (NPC& npc : m_npcs)
+	{
+		m_window.draw(npc);
+	}
 
+	m_window.draw(m_player);
+	
 	m_window.display();
 }
 
 void Game::setupShapes()
 {
-	m_circle.setFillColor(sf::Color::Red);
-	m_circle.setRadius(30.0f);
-	m_circle.setPosition(400.0f, 300.0f);
+	for (int i = 0; i < NPC_NUM; i++)
+	{
+		m_npcs.push_back(NPC());
+	}
 }

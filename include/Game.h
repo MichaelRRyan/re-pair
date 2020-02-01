@@ -3,10 +3,10 @@
 #ifndef GAME
 #define GAME
 
-#include "NPC.h"
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "player.h"
-
+#include "NPC.h"
 
 class Game
 {
@@ -28,12 +28,9 @@ private:
 	sf::RenderWindow m_window;
 	bool m_exitGame;
 
-	sf::CircleShape m_circle;
-
 	Player m_player;
 
-	NPC m_npc;
-
+	std::vector<NPC> m_npcs;
 };
 
 #endif // !GAME
