@@ -6,9 +6,13 @@
 
 #include "Person.h"
 
-class NPC
+class NPC : public Person
 {
+public:
+	void update();
 
+private:
+	Person m_person;
 };
 
 #endif // !NPC_H

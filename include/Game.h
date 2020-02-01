@@ -3,6 +3,7 @@
 #ifndef GAME
 #define GAME
 
+#include "NPC.h"
 #include <SFML/Graphics.hpp>
 #include "player.h"
 
@@ -28,7 +29,11 @@ private:
 	bool m_exitGame;
 
 	sf::CircleShape m_circle;
+
 	Player m_player;
+
+	NPC m_npc;
+
 };
 
 #endif // !GAME

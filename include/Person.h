@@ -1,5 +1,5 @@
-#ifndef NPC_H
-#define NPC_H
+#ifndef PERSON_H
+#define PERSON_H
 
 /// @Author Michael R Ryan
 /// @Date 01/02/2020
@@ -13,8 +13,12 @@ public:
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+protected:
+	void move(float t_x, float t_y);
+	void move(sf::Vector2f t_vector);
+
 private:
 	sf::RectangleShape m_boundingBox;
 };
 
-#endif // !NPC_H
+#endif // !PERSON_H
