@@ -7,13 +7,18 @@
 
 #include "Person.h"
 #include "Config.h"
+#include "MathUtility.h"
 
 class Player : public Person
 {
-	
 public:
+	Player();
+
 	void move();
 	void winCheck();
+
+private:
+	float m_speed;
 };
 
 #endif // !PLAYER_H

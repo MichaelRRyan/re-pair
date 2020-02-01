@@ -22,6 +22,7 @@
     <ClCompile Include="src\CameraController.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MathUtility.cpp" />
     <ClCompile Include="src\Matrix3f.cpp" />
     <ClCompile Include="src\NPC.cpp" />
     <ClCompile Include="src\Person.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="include\CameraController.h" />
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\MathUtility.h" />
     <ClInclude Include="include\Matrix3f.h" />
     <ClInclude Include="include\NPC.h" />
     <ClInclude Include="include\Person.h" />

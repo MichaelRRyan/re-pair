@@ -1,6 +1,13 @@
 #include "../include/Player.h"
 
+/// @Author Michael R Ryan
+/// @Author Sean Whelan
+/// @Date 01/02/2020
 
+Player::Player() :
+	m_speed{ 3.0f }
+{
+}
 
 void Player::move()
 {
@@ -23,29 +30,9 @@ void Player::move()
 		moveDirection.y++;
 	}
 
-	if (moveDirection.x != 0.0f || moveDirection.y != 0.0f)
+	if (MathUtility::length(moveDirection) != 0.0f)
 	{
-
-		if (moveDirection.x < 0.0f)
-		{
-			Person::move(-3.0f, 0.0f );
-		}
-		
-		if (moveDirection.x > 0.0f)
-		{
-			Person::move(3.0f, 0.0f);
-
-		}
-		
-		if (moveDirection.y < 0)
-		{
-			Person::move(0.0f, -3.0f);
-		}
-		
-		if (moveDirection.y > 0)
-		{
-			Person::move(0.0f, 3.0f);    
-		}
+		Person::move(MathUtility::normalise(moveDirection) * m_speed);
 
 		// Wall collisions
 		if (Person::getPosition().x + Person::getSize().x > GAME_WIDTH)
