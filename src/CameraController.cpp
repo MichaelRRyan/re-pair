@@ -15,6 +15,29 @@ void CameraController::moveWindow(sf::Vector2f t_targetPos)
 {
 	sf::Vector2f distanceVec = t_targetPos - m_view.getCenter();
 	m_view.setCenter(m_view.getCenter() + (distanceVec / m_smoothness));
+
+	// Horisontal
+	if (m_view.getCenter().x + (m_view.getSize().x / 2.0f) > GAME_WIDTH + m_WINDOW_BORDER)
+	{
+		m_view.setCenter(GAME_WIDTH - (m_view.getSize().x / 2.0f) + m_WINDOW_BORDER, m_view.getCenter().y);
+	}
+
+	if (m_view.getCenter().x - (m_view.getSize().x / 2.0f) < -m_WINDOW_BORDER)
+	{
+		m_view.setCenter(m_view.getSize().x / 2.0f - m_WINDOW_BORDER, m_view.getCenter().y);
+	}
+
+	// Vertical
+	if (m_view.getCenter().y + (m_view.getSize().y / 2.0f) > GAME_HEIGHT + m_WINDOW_BORDER)
+	{
+		m_view.setCenter(m_view.getCenter().x, GAME_HEIGHT - (m_view.getSize().y / 2.0f) + m_WINDOW_BORDER);
+	}
+
+	if (m_view.getCenter().y - (m_view.getSize().y / 2.0f) < -m_WINDOW_BORDER)
+	{
+		m_view.setCenter(m_view.getCenter().x, (m_view.getSize().y / 2.0f) - m_WINDOW_BORDER);
+	}
+
 	m_windowRef.setView(m_view);
 }
 

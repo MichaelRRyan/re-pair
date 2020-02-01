@@ -6,6 +6,7 @@
 /// @Date 01/02/2020
 
 #include "Person.h"
+#include "Config.h"
 
 class Player : public Person
 {

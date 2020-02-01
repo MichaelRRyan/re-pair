@@ -34,6 +34,9 @@ private:
 	std::vector<NPC> m_npcs;
 
 	CameraController m_cameraController;
+
+	sf::Texture m_backgroundTexture;
+	sf::Sprite m_backgroundSprite;
 };
 
 #endif // !GAME

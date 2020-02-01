@@ -69,6 +69,8 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 
+	m_window.draw(m_backgroundSprite);
+
 	for (NPC& npc : m_npcs)
 	{
 		m_window.draw(npc);
@@ -85,4 +87,12 @@ void Game::setupShapes()
 	{
 		m_npcs.push_back(NPC());
 	}
+
+	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
+	{
+		std::cout << "Error loading texture file" << std::endl;
+	}
+
+	m_backgroundSprite.setTexture(m_backgroundTexture);
+	m_backgroundSprite.setPosition(-150.0f, -150.0f);
 }

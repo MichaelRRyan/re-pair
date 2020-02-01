@@ -35,6 +35,12 @@ const sf::Vector2f Person::getPosition() const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void Person::setPosition(float t_x, float t_y)
+{
+    m_boundingBox.setPosition(t_x, t_y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 const sf::Vector2f Person::getSize() const
 {
     return { m_boundingBox.getGlobalBounds().width, m_boundingBox.getGlobalBounds().height };
