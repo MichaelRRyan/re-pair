@@ -1,5 +1,7 @@
 #include "../include/Player.h"
-#include <iostream>
+
+
+
 void Player::move()
 {
 	sf::Vector2f moveDirection = { 0.0f, 0.0f };
@@ -28,13 +30,12 @@ void Player::move()
 		if (moveDirection.x < 0.0f)
 		{
 			Person::move(-3.0f, 0.0f );
-			//std::cout << "left" << std::endl;
 		}
 		
 		if (moveDirection.x > 0.0f)
 		{
 			Person::move(3.0f, 0.0f);
-		//	std::cout << "Right" << std::endl;
+
 		}
 		
 		if (moveDirection.y < 0)
@@ -44,7 +45,7 @@ void Player::move()
 		
 		if (moveDirection.y > 0)
 		{
-			Person::move(0.0f, 3.0f);
+			Person::move(0.0f, 3.0f);    
 		}
 	}
 }
