@@ -5,6 +5,7 @@
 
 Game::Game() :
 	m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
+	m_cameraController{ m_window },
 	m_exitGame{ false }
 {
 	setupShapes();
@@ -90,7 +91,7 @@ void Game::update(sf::Time t_deltaTime)
 
 void Game::render()
 {
-	m_window.clear();
+	m_window.clear(sf::Color::White);
 
 	for (NPC& npc : m_npcs)
 	{
