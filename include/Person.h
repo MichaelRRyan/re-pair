@@ -14,12 +14,12 @@ public:
 	Person(float const t_x, float const t_y);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	const sf::Vector2f getPosition() const;
 
 protected:
 	void move(float t_x, float t_y);
 	void move(sf::Vector2f t_vector);
 
-	const sf::Vector2f getPosition() const;
 	const sf::Vector2f getSize() const;
 
 private:
