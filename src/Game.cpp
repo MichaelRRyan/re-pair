@@ -55,6 +55,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 
 	m_player.move();
+	m_player.winCheck();
 
 	for (NPC& npc : m_npcs)
 	{
