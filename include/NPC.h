@@ -6,9 +6,9 @@
 
 #include "Person.h"
 
-class NPC
+class NPC : Person
 {
-
+	
 };
 
 #endif // !NPC_H
