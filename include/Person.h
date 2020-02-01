@@ -16,12 +16,14 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	const sf::Vector2f getPosition() const;
 	void setPosition(float t_x, float t_y);
+	const sf::Vector2f getSize() const;
+
+	void setFillColor(sf::Color t_color);
+	sf::Color getFillColor();
 
 protected:
 	void move(float t_x, float t_y);
 	void move(sf::Vector2f t_vector);
-
-	const sf::Vector2f getSize() const;
 
 private:
 	sf::RectangleShape m_boundingBox;

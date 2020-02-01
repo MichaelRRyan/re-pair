@@ -6,7 +6,8 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
 	m_cameraController{ m_window },
-	m_exitGame{ false }
+	m_exitGame{ false },
+	m_gamestate{ GameState::Gameplay }
 {
 	setupShapes();
 }
@@ -55,29 +56,44 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	m_player.move();
-	m_player.winCheck();
-
-	for (NPC& npc : m_npcs)
+	if (m_gamestate == GameState::Splash
+		|| m_gamestate == GameState::Gameplay)
 	{
-		npc.update();
+		for (NPC& npc : m_npcs)
+		{
+			npc.update();
+		}
 	}
 
-	m_cameraController.moveWindow(m_player.getPosition());
+	if (m_gamestate == GameState::Gameplay)
+	{
+		if (m_player.winCheck())
+		{
+			m_gamestate = GameState::End;
+		}
+
+		m_player.update();
+
+		m_cameraController.moveWindow(m_player.getPosition());
+	}
 }
 
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
 
-	m_window.draw(m_backgroundSprite);
-
-	for (NPC& npc : m_npcs)
+	if (m_gamestate == GameState::Splash
+		|| m_gamestate == GameState::Gameplay)
 	{
-		m_window.draw(npc);
-	}
+		m_window.draw(m_backgroundSprite);
 
-	m_window.draw(m_player);
+		for (NPC& npc : m_npcs)
+		{
+			m_window.draw(npc);
+		}
+
+		m_window.draw(m_player);
+	}
 	
 	m_window.display();
 }
@@ -88,6 +104,10 @@ void Game::setupShapes()
 	{
 		m_npcs.push_back(NPC());
 	}
+
+	int index = rand() % NPC_NUM;
+	m_player.setTarget(&m_npcs.at(index));
+	m_npcs.at(index).setPerson(&m_player);
 
 	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
 	{

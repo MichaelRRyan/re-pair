@@ -14,11 +14,15 @@ class Player : public Person
 public:
 	Player();
 
-	void move();
-	void winCheck();
+	void update();
+
+	bool winCheck();
+
+	void setTarget(Person * t_targetPtr);
 
 private:
 	float m_speed;
+	Person * m_targetPtr;
 };
 
 #endif // !PLAYER_H

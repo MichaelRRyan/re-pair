@@ -5,11 +5,12 @@
 /// @Date 01/02/2020
 
 Player::Player() :
-	m_speed{ 3.0f }
+	m_speed{ 3.0f },
+	m_targetPtr{ nullptr }
 {
 }
 
-void Player::move()
+void Player::update()
 {
 	sf::Vector2f moveDirection = { 0.0f, 0.0f };
 
@@ -57,11 +58,28 @@ void Player::move()
 	}
 }
 
-void Player::winCheck()
+bool Player::winCheck()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		
+		if (m_targetPtr != nullptr)
+		{
+			if (getPosition().x + getSize().x > m_targetPtr->getPosition().x
+				&& getPosition().x < m_targetPtr->getPosition().x + m_targetPtr->getSize().x)
+			{
+				if (getPosition().y + getSize().y > m_targetPtr->getPosition().y
+					&& getPosition().y < m_targetPtr->getPosition().y + m_targetPtr->getSize().y)
+				{
+					return true;
+				}
+			}
+		}
 	}
 
+	return false;
+}
+
+void Player::setTarget(Person* t_targetPtr)
+{
+	m_targetPtr = t_targetPtr;
 }

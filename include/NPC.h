@@ -14,6 +14,7 @@ public:
 	NPC();
 
 	void update();
+	void setPerson(Person* t_person);
 
 private:
 	sf::Vector2f m_velocity;

@@ -9,6 +9,14 @@
 #include "NPC.h"
 #include "CameraController.h"
 
+enum class GameState
+{
+	Licence,
+	Splash,
+	Gameplay,
+	End
+};
+
 class Game
 {
 public:
@@ -37,6 +45,8 @@ private:
 
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
+
+	GameState m_gamestate;
 };
 
 #endif // !GAME

@@ -41,3 +41,8 @@ void NPC::update()
 		m_velocity.y *= -1;
 	}
 }
+
+void NPC::setPerson(Person* t_person)
+{
+	setFillColor(t_person->getFillColor());
+}

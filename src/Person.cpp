@@ -47,6 +47,18 @@ const sf::Vector2f Person::getSize() const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void Person::setFillColor(sf::Color t_color)
+{
+    m_boundingBox.setFillColor(t_color);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+sf::Color Person::getFillColor()
+{
+    return m_boundingBox.getFillColor();
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void Person::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     // You can draw other high-level objects
