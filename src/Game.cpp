@@ -52,6 +52,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
+
+	m_npc.update();
 }
 
 void Game::render()
@@ -59,6 +61,7 @@ void Game::render()
 	m_window.clear();
 
 	m_window.draw(m_circle);
+	m_window.draw(m_npc);
 
 	m_window.display();
 }
