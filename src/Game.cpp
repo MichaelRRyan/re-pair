@@ -10,7 +10,14 @@ Game::Game() :
 	m_gamestate{ GameState::Gameplay }
 {
 	sf::View view = m_window.getDefaultView();
-	view.setSize(view.getSize() / 1.8f);
+
+	float heightPerWidth = view.getSize().y / view.getSize().x;
+
+	view.setSize(800.0f, 800.0f * heightPerWidth);
+
+	view.setSize(view.getSize());
+
+
 	m_window.setView(view);
 	m_window.setVerticalSyncEnabled(true);
 
