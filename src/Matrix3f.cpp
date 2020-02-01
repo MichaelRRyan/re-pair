@@ -1,5 +1,8 @@
 #include "../include/Matrix3f.h"
 
+/// @Author Michael R Ryan
+/// @Date 01/02/2020
+
 using namespace sf;
 
 sf::Matrix3f::Matrix3f()

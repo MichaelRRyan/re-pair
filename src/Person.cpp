@@ -21,6 +21,18 @@ void Person::move(sf::Vector2f t_vector)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+const sf::Vector2f Person::getPosition() const
+{
+	return m_boundingBox.getPosition();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+const sf::Vector2f Person::getSize() const
+{
+    return { m_boundingBox.getGlobalBounds().width, m_boundingBox.getGlobalBounds().height };
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void Person::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     // You can draw other high-level objects

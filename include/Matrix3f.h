@@ -1,6 +1,9 @@
 #ifndef MATRIX3F_H
 #define MATRIX3F_H
 
+/// @Author Michael R Ryan
+/// @Date 01/02/2020
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 

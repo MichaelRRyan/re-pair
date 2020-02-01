@@ -17,6 +17,9 @@ protected:
 	void move(float t_x, float t_y);
 	void move(sf::Vector2f t_vector);
 
+	const sf::Vector2f getPosition() const;
+	const sf::Vector2f getSize() const;
+
 private:
 	sf::RectangleShape m_boundingBox;
 };

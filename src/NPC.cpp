@@ -1,6 +1,41 @@
 #include "../include/NPC.h"
 
+/// @Author Michael R Ryan
+/// @Date 01/02/2020
+
+NPC::NPC() :
+	m_velocity{ 1.0f, 0.0f }
+{
+}
+
 void NPC::update()
 {
-	move(1.0f, 0.0f);
+	sf::Vector3f vector3 = { m_velocity.x, m_velocity.y, 0.0f };
+
+	vector3 = sf::Matrix3f::RotationZ(static_cast<float>(rand() % 20 - 10)) * vector3;
+
+	m_velocity.x = vector3.x;
+	m_velocity.y = vector3.y;
+
+	move(m_velocity);
+
+	if (Person::getPosition().x - Person::getSize().x > GAME_WIDTH)
+	{
+		m_velocity.x *= -1;
+	}
+
+	if (Person::getPosition().x < 0.0f)
+	{
+		m_velocity.x *= -1;
+	}
+
+	if (Person::getPosition().y > GAME_HEIGHT)
+	{
+		m_velocity.y *= -1;
+	}
+
+	if (Person::getPosition().y - Person::getSize().y < 0.0f)
+	{
+		m_velocity.y *= -1;
+	}
 }
