@@ -11,6 +11,9 @@ class Person : public sf::Drawable
 public:
 	Person();
 
+	void move(float t_x, float t_y);
+	void move(sf::Vector2f t_vector);
+
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
