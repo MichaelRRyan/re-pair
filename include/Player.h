@@ -13,7 +13,7 @@ class Player : public Person
 	
 public:
 	void move();
-
+	void winCheck();
 };
 
 #endif // !PLAYER_H

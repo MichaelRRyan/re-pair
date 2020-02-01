@@ -69,3 +69,12 @@ void Player::move()
 		}
 	}
 }
+
+void Player::winCheck()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		
+	}
+
+}
