@@ -22,6 +22,8 @@ public:
 
 	void setTarget(Person * t_targetPtr);
 
+	const float getDistanceToTarget() const;
+
 private:
 	float m_speed;
 	Person * m_targetPtr;

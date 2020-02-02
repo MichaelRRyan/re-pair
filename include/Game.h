@@ -60,6 +60,19 @@ private:
 	sf::Sprite m_overlaySprite;
 
 	sf::Music m_backgroundMusic;
+
+	sf::SoundBuffer m_bleepBuffer;
+	sf::Sound m_bleepSound;
+
+	sf::SoundBuffer m_winBuffer;
+	sf::Sound m_winSound;
+
+	sf::SoundBuffer m_loseBuffer;
+	sf::Sound m_loseSound;
+
+	sf::Clock m_bleepTimer;
+
+	bool m_blindMode;
 };
 
 #endif // !GAME
