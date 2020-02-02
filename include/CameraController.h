@@ -16,12 +16,12 @@ public:
 
 	void moveWindow(sf::Vector2f t_targetPos);
 
-	void setSmoothness(float t_snapSpeed);
+	void setSmoothness(sf::Vector2f t_smoothness);
 
 private:
 	sf::RenderWindow & m_windowRef;
 	sf::View m_view;
-	float m_smoothness;
+	sf::Vector2f m_smoothness;
 
 	const float m_WINDOW_BORDER{ 150.0f };
 };
