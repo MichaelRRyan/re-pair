@@ -80,7 +80,7 @@ Game::Game() :
 	m_loseSound.setBuffer(m_loseBuffer);
 
 	startRound();
-	m_gamestate = GameState::Splash;
+	m_gamestate = GameState::Licence;
 }
 
 Game::~Game()
@@ -137,14 +137,14 @@ void Game::processEvents()
 
 			if (m_gamestate == GameState::Splash)
 			{
-				m_gui.processEvents(nextEvent, m_backgroundMusic, m_gameTimer, m_gamestate, m_window);
-
 				if (sf::Keyboard::B == nextEvent.key.code)
 				{
 					m_blindMode = !m_blindMode;
 				}
 			}
 		}
+
+		m_gui.processEvents(nextEvent, m_backgroundMusic, m_gameTimer, m_gamestate, m_window);
 	}
 }
 
@@ -200,6 +200,8 @@ void Game::update(sf::Time t_deltaTime)
 			m_bleepTimer.restart();
 		}
 	}
+
+	m_gui.update(m_gamestate);
 }
 
 void Game::render()
@@ -231,10 +233,9 @@ void Game::render()
 		m_window.draw(m_overlaySprite);
 	}
 
-	if (GameState::Splash == m_gamestate)
-	{
-		m_gui.draw(m_window, m_gamestate);
-	}
+	
+	m_gui.draw(m_window, m_gamestate);
+	
 	
 	m_window.display();
 }
