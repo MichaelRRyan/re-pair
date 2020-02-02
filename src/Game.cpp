@@ -5,9 +5,11 @@
 
 Game::Game() :
 	m_window{ sf::VideoMode::getDesktopMode(), "Basic Game", sf::Style::Fullscreen },
+	//m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
 	m_cameraController{ m_window },
 	m_exitGame{ false },
-	m_gamestate{ GameState::Gameplay }
+	m_gamestate{ GameState::Gameplay },
+	m_player{ m_spriteSheetTexture }
 {
 	sf::View view = m_window.getDefaultView();
 
@@ -20,6 +22,11 @@ Game::Game() :
 
 	m_window.setView(view);
 	m_window.setVerticalSyncEnabled(true);
+
+	if (!m_spriteSheetTexture.loadFromFile("images//SpriteSheet.png"))
+	{
+		std::cout << "Error loading sprite sheet texture file" << std::endl;
+	}
 
 	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
 	{
@@ -163,7 +170,7 @@ void Game::startRound()
 
 	for (int i = 0; i < NPC_NUM; i++)
 	{
-		m_npcs.push_back(NPC());
+		m_npcs.push_back(NPC(m_spriteSheetTexture));
 	}
 
 	int index = rand() % NPC_NUM;

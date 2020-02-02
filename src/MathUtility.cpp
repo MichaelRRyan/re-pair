@@ -20,3 +20,9 @@ const sf::Vector2f MathUtility::normalise(sf::Vector2f const t_vector)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+sf::Color MathUtility::randomColor()
+{
+	return sf::Color{ static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255) };
+}
+
+///////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,8 @@
 /// @Author Sean Whelan
 /// @Date 01/02/2020
 
-Player::Player() :
+Player::Player(sf::Texture const& t_spriteSheetTexture) :
+	Person(t_spriteSheetTexture, 200),
 	m_speed{ 5.0f },
 	m_targetPtr{ nullptr }
 {
@@ -13,7 +14,7 @@ Player::Player() :
 void Player::setup()
 {
 	setPosition((GAME_WIDTH / 2.0f) - (getSize().x / 2.0f), (GAME_HEIGHT / 2.0f) - (getSize().y / 2.0f));
-	setFillColor(sf::Color{ static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255),static_cast<sf::Uint8>(rand() % 255) });
+	setFillColor(MathUtility::randomColor(), MathUtility::randomColor(), MathUtility::randomColor());
 }
 
 void Player::update()
@@ -60,6 +61,17 @@ void Player::update()
 		if (Person::getPosition().y < 0.0f)
 		{
 			Person::setPosition(Person::getPosition().x, 0.0f);
+		}
+	}
+	else if (getFrameIndex() > 1) // If not moving and idle sprite has not been chosen
+	{
+		if (getFrameIndex() == 6)
+		{
+			setFrameIndex(1);
+		}
+		else
+		{
+			setFrameIndex(0);
 		}
 	}
 }

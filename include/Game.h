@@ -52,6 +52,8 @@ private:
 
 	sf::Font m_font;
 	sf::Text m_text;
+
+	sf::Texture m_spriteSheetTexture;
 };
 
 #endif // !GAME

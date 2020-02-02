@@ -11,7 +11,7 @@
 class NPC : public Person
 {
 public:
-	NPC();
+	NPC(sf::Texture const& t_spriteSheetTexture);
 
 	void update();
 	void setPerson(Person* t_person);

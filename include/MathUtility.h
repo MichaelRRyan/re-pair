@@ -13,6 +13,8 @@ public:
 	static const float length(sf::Vector2f const t_vector);
 
 	static const sf::Vector2f normalise(sf::Vector2f const t_vector);
+
+	static sf::Color randomColor();
 };
 
 #endif // !MATH_UTILITY_H

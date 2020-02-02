@@ -12,7 +12,7 @@
 class Player : public Person
 {
 public:
-	Player();
+	Player(sf::Texture const& t_spriteSheetTexture);
 
 	void setup();
 
