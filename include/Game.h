@@ -47,8 +47,6 @@ private:
 	sf::Clock m_gameTimer;
 	float elapsedSeconds = 0;
 
-	sf::Font m_font;
-	sf::Text m_text;
 
 	sf::Texture m_spriteSheetTexture;
 

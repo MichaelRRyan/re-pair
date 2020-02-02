@@ -43,13 +43,6 @@ Game::Game() :
 	m_backgroundSprite.setTexture(m_backgroundTexture);
 	m_backgroundSprite.setPosition(-150.0f, -150.0f);
 
-	if (!m_font.loadFromFile("Slabo.ttf"))
-	{
-		throw("Error loading font file");
-	}
-
-	m_text.setFont(m_font);
-	m_text.setFillColor(sf::Color::Black);
 
 	if (!m_backgroundMusic.openFromFile("sounds//backgroundMusic.ogg"))
 	{
@@ -225,7 +218,6 @@ void Game::render()
 
 		m_window.draw(m_timeBar);
 
-		m_window.draw(m_text);
 
 		m_window.draw(m_timeBar);
 
