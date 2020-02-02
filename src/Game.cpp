@@ -8,8 +8,8 @@ Game::Game() :
 	//m_window{ sf::VideoMode{ 800u, 600u, 32u }, "Basic Game" },
 	m_cameraController{ m_window },
 	m_exitGame{ false },
-	m_gamestate{ GameState::Gameplay },
-	m_player{ m_spriteSheetTexture }
+	m_player{ m_spriteSheetTexture },
+	m_blindMode{ false }
 {
 	sf::View view = m_window.getDefaultView();
 
@@ -18,7 +18,6 @@ Game::Game() :
 	view.setSize(800.0f, 800.0f * heightPerWidth);
 
 	view.setSize(view.getSize());
-
 
 	m_window.setView(view);
 	m_window.setVerticalSyncEnabled(true);
@@ -52,7 +51,36 @@ Game::Game() :
 	m_text.setFont(m_font);
 	m_text.setFillColor(sf::Color::Black);
 
+	if (!m_backgroundMusic.openFromFile("sounds//backgroundMusic.ogg"))
+	{
+		std::cout << "Error opening music file" << std::endl;
+	}
+
+	m_backgroundMusic.setLoop(true);
+
+	if (!m_bleepBuffer.loadFromFile("sounds//sonarBleep.wav"))
+	{
+		throw("Error loading bleep sound file");
+	}
+
+	m_bleepSound.setBuffer(m_bleepBuffer);
+
+	if (!m_winBuffer.loadFromFile("sounds//win.wav"))
+	{
+		throw("Error loading win sound file");
+	}
+
+	m_winSound.setBuffer(m_winBuffer);
+
+	if (!m_loseBuffer.loadFromFile("sounds//lose.wav"))
+	{
+		throw("Error loading lose sound file");
+	}
+
+	m_loseSound.setBuffer(m_loseBuffer);
+
 	startRound();
+	m_gamestate = GameState::Splash;
 }
 
 Game::~Game()
@@ -97,10 +125,31 @@ void Game::processEvents()
 				{
 					startRound();
 				}
+				if (sf::Keyboard::B == nextEvent.key.code)
+				{
+					m_blindMode = !m_blindMode;
+				}
 			}
 			if (sf::Keyboard::Escape == nextEvent.key.code)
 			{
 				m_window.close();
+			}
+
+			if (m_gamestate == GameState::Splash)
+			{
+				if (sf::Keyboard::Space == nextEvent.key.code)
+				{
+					m_backgroundMusic.stop();
+					m_backgroundMusic.play();
+
+					m_gamestate = GameState::Gameplay;
+
+					m_gameTimer.restart();
+				}
+				if (sf::Keyboard::B == nextEvent.key.code)
+				{
+					m_blindMode = !m_blindMode;
+				}
 			}
 		}
 	}
@@ -127,6 +176,7 @@ void Game::update(sf::Time t_deltaTime)
 		if (m_player.winCheck())
 		{
 			m_gamestate = GameState::End;
+			m_winSound.play();
 		}
 
 		m_player.update();
@@ -144,6 +194,17 @@ void Game::update(sf::Time t_deltaTime)
 		if (elapsedSeconds >= 20.0f)
 		{
 			m_gamestate = GameState::End;
+			m_loseSound.play();
+		}
+
+		if (m_bleepTimer.getElapsedTime().asMilliseconds() > m_player.getDistanceToTarget()  * 5.0f)
+		{
+			if (m_blindMode)
+			{
+				m_bleepSound.play();
+			}
+
+			m_bleepTimer.restart();
 		}
 	}
 }
@@ -157,9 +218,12 @@ void Game::render()
 	{
 		m_window.draw(m_backgroundSprite);
 
-		for (NPC& npc : m_npcs)
+		if (!m_blindMode)
 		{
-			m_window.draw(npc);
+			for (NPC& npc : m_npcs)
+			{
+				m_window.draw(npc);
+			}
 		}
 
 		m_window.draw(m_player);
@@ -193,6 +257,9 @@ void Game::startRound()
 	int index = rand() % NPC_NUM;
 	m_player.setTarget(&m_npcs.at(index));
 	m_npcs.at(index).setPerson(&m_player);
+
+	m_backgroundMusic.stop();
+	m_backgroundMusic.play();
 
 	m_gamestate = GameState::Gameplay;
 

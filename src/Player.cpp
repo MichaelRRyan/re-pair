@@ -101,3 +101,8 @@ void Player::setTarget(Person* t_targetPtr)
 {
 	m_targetPtr = t_targetPtr;
 }
+
+const float Player::getDistanceToTarget() const
+{
+	return MathUtility::length(m_targetPtr->getPosition() - getPosition());
+}

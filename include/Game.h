@@ -4,6 +4,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "player.h"
 #include "NPC.h"
@@ -60,6 +61,21 @@ private:
 
 	sf::Texture m_overlayTexture;
 	sf::Sprite m_overlaySprite;
+
+	sf::Music m_backgroundMusic;
+
+	sf::SoundBuffer m_bleepBuffer;
+	sf::Sound m_bleepSound;
+
+	sf::SoundBuffer m_winBuffer;
+	sf::Sound m_winSound;
+
+	sf::SoundBuffer m_loseBuffer;
+	sf::Sound m_loseSound;
+
+	sf::Clock m_bleepTimer;
+
+	bool m_blindMode;
 };
 
 #endif // !GAME

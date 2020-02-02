@@ -179,11 +179,13 @@ sf::Color Person::getTrousersColor()
     return m_trousersSprite.getColor();
 }
 
+///////////////////////////////////////////////////////////////////////////////
 const int Person::getFrameIndex() const
 {
     return m_frameIndex;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void Person::setFrameIndex(int const t_index)
 {
     m_frameIndex = t_index;
@@ -192,6 +194,12 @@ void Person::setFrameIndex(int const t_index)
     m_hairSprite.setTextureRect({ 8 * m_frameIndex, 16, 8, 16 });
     m_shirtSprite.setTextureRect({ 8 * m_frameIndex, 32, 8, 16 });
     m_trousersSprite.setTextureRect({ 8 * m_frameIndex, 48, 8, 16 });
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void Person::setAnimationInterval(int t_milliseconds)
+{
+    m_animIntervalMS = t_milliseconds;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
