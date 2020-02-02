@@ -52,6 +52,11 @@ Game::Game() :
 	m_text.setFont(m_font);
 	m_text.setFillColor(sf::Color::Black);
 
+	if (!m_backgroundMusic.openFromFile("sounds//backgroundMusic.ogg"))
+	{
+		std::cout << "Error opening music file" << std::endl;
+	}
+
 	startRound();
 }
 
@@ -187,6 +192,11 @@ void Game::startRound()
 	int index = rand() % NPC_NUM;
 	m_player.setTarget(&m_npcs.at(index));
 	m_npcs.at(index).setPerson(&m_player);
+
+	m_backgroundMusic.setLoop(true);
+
+	m_backgroundMusic.stop();
+	m_backgroundMusic.play();
 
 	m_gamestate = GameState::Gameplay;
 

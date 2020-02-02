@@ -4,6 +4,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "player.h"
 #include "NPC.h"
@@ -57,6 +58,8 @@ private:
 
 	sf::Texture m_overlayTexture;
 	sf::Sprite m_overlaySprite;
+
+	sf::Music m_backgroundMusic;
 };
 
 #endif // !GAME
