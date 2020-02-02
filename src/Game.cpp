@@ -28,6 +28,14 @@ Game::Game() :
 		std::cout << "Error loading sprite sheet texture file" << std::endl;
 	}
 
+	if (!m_overlayTexture.loadFromFile("images//overlay.png"))
+	{
+		std::cout << "Error loading overlay texture file" << std::endl;
+	}
+
+	m_overlaySprite.setTexture(m_overlayTexture);
+	m_overlaySprite.setOrigin(m_overlaySprite.getGlobalBounds().width / 2.0f, m_overlaySprite.getGlobalBounds().height / 2.0f);
+
 	if (!m_backgroundTexture.loadFromFile("images//Background.png"))
 	{
 		std::cout << "Error loading texture file" << std::endl;
@@ -155,6 +163,9 @@ void Game::render()
 		m_window.draw(m_player);
 
 		m_window.draw(m_text);
+
+		m_overlaySprite.setPosition(m_window.getView().getCenter());
+		m_window.draw(m_overlaySprite);
 	}
 	
 	m_window.display();

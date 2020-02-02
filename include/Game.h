@@ -54,6 +54,9 @@ private:
 	sf::Text m_text;
 
 	sf::Texture m_spriteSheetTexture;
+
+	sf::Texture m_overlayTexture;
+	sf::Sprite m_overlaySprite;
 };
 
 #endif // !GAME
