@@ -9,14 +9,7 @@
 #include "player.h"
 #include "NPC.h"
 #include "CameraController.h"
-
-enum class GameState
-{
-	Licence,
-	Splash,
-	Gameplay,
-	End
-};
+#include "GUI.h"
 
 class Game
 {
@@ -73,6 +66,8 @@ private:
 	sf::Clock m_bleepTimer;
 
 	bool m_blindMode;
+
+	GUI m_gui;
 };
 
 #endif // !GAME

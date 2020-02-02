@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\CameraController.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MathUtility.cpp" />
     <ClCompile Include="src\Matrix3f.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="include\CameraController.h" />
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\GUI.h" />
     <ClInclude Include="include\MathUtility.h" />
     <ClInclude Include="include\Matrix3f.h" />
     <ClInclude Include="include\NPC.h" />

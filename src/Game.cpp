@@ -137,15 +137,8 @@ void Game::processEvents()
 
 			if (m_gamestate == GameState::Splash)
 			{
-				if (sf::Keyboard::Space == nextEvent.key.code)
-				{
-					m_backgroundMusic.stop();
-					m_backgroundMusic.play();
+				m_gui.processEvents(nextEvent, m_backgroundMusic, m_gameTimer, m_gamestate, m_window);
 
-					m_gamestate = GameState::Gameplay;
-
-					m_gameTimer.restart();
-				}
 				if (sf::Keyboard::B == nextEvent.key.code)
 				{
 					m_blindMode = !m_blindMode;
@@ -230,6 +223,11 @@ void Game::render()
 
 		m_overlaySprite.setPosition(m_window.getView().getCenter());
 		m_window.draw(m_overlaySprite);
+	}
+
+	if (GameState::Splash == m_gamestate)
+	{
+		m_gui.draw(m_window, m_gamestate);
 	}
 	
 	m_window.display();
