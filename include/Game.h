@@ -33,6 +33,7 @@ private:
 	void render();
 
 	void startRound();
+	void timeBar();
 
 	sf::RenderWindow m_window;
 	bool m_exitGame;
@@ -45,10 +46,12 @@ private:
 
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
+	sf::RectangleShape m_timeBar;
 
 	GameState m_gamestate;
 
 	sf::Clock m_gameTimer;
+	float elapsedSeconds = 0;
 
 	sf::Font m_font;
 	sf::Text m_text;

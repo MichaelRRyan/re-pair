@@ -130,14 +130,16 @@ void Game::update(sf::Time t_deltaTime)
 		}
 
 		m_player.update();
+		timeBar();
+		m_timeBar.setPosition(sf::Vector2f(m_player.getPosition().x, m_player.getPosition().y + m_player.getSize().y*1.2));
 
 		m_cameraController.moveWindow(m_player.getPosition());
 
-		float elapsedSeconds = m_gameTimer.getElapsedTime().asSeconds();
+		 elapsedSeconds = m_gameTimer.getElapsedTime().asSeconds();
 
-		m_text.setString(std::to_string(20 - static_cast<int>(elapsedSeconds)));
+		/*m_text.setString(std::to_string(20 - static_cast<int>(elapsedSeconds)));
 		m_text.setPosition(m_player.getPosition().x + m_player.getSize().x / 2.0f, m_player.getPosition().y + m_player.getSize().y);
-		m_text.setOrigin(m_text.getGlobalBounds().width / 2.0f, 0.0f);
+		m_text.setOrigin(m_text.getGlobalBounds().width / 2.0f, 0.0f);*/
 
 		if (elapsedSeconds >= 20.0f)
 		{
@@ -162,7 +164,11 @@ void Game::render()
 
 		m_window.draw(m_player);
 
+		m_window.draw(m_timeBar);
+
 		m_window.draw(m_text);
+
+		m_window.draw(m_timeBar);
 
 		m_overlaySprite.setPosition(m_window.getView().getCenter());
 		m_window.draw(m_overlaySprite);
@@ -191,4 +197,29 @@ void Game::startRound()
 	m_gamestate = GameState::Gameplay;
 
 	m_gameTimer.restart();
+}
+
+void Game::timeBar()
+{
+	float xPos = (20 - elapsedSeconds) * (80 / 20);
+	m_timeBar.setOrigin(sf::Vector2f(xPos / 2, 5));
+
+	if (elapsedSeconds >= 15)
+	{
+		m_timeBar.setFillColor(sf::Color::Red);
+	}
+	if (elapsedSeconds > 5 && elapsedSeconds <=14)
+	{
+		m_timeBar.setFillColor(sf::Color::Yellow);
+	}
+	if (elapsedSeconds <5 && elapsedSeconds >= 0)
+	{
+		m_timeBar.setFillColor(sf::Color::Green);
+	}
+
+
+	m_timeBar.setPosition(sf::Vector2f(m_player.getPosition().x, m_player.getPosition().y + m_player.getSize().y * 1.2));
+
+	m_timeBar.setSize(sf::Vector2f(xPos, 10));
+	//m_timeBar.setFillColor(sf::Color{200,25,25,100});
 }
