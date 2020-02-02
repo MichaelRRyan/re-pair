@@ -9,6 +9,11 @@ NPC::NPC(sf::Texture const& t_spriteSheetTexture) :
 		static_cast<float>(rand() % static_cast<int>(GAME_WIDTH - Person::getPosition().x)),
 		static_cast<float>(rand() % static_cast<int>(GAME_HEIGHT - Person::getSize().y)))
 {
+	if (rand() % 15 == 0)
+	{
+		setAnimationInterval(200);
+		m_velocity.x = 5.0f;
+	}
 }
 
 void NPC::update()
@@ -46,4 +51,6 @@ void NPC::update()
 void NPC::setPerson(Person* t_person)
 {
 	setFillColor(t_person->getHairColor(), t_person->getShirtColor(), t_person->getTrousersColor());
+	setAnimationInterval(500);
+	m_velocity = { 1.0f, 0.0f };
 }

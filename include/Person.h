@@ -31,6 +31,8 @@ public:
 	const int getFrameIndex() const;
 	void setFrameIndex(int const t_index);
 
+	void setAnimationInterval(int t_milliseconds);
+
 
 protected:
 	void move(float t_x, float t_y);
